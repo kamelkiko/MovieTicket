@@ -17,13 +17,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kamel.movieticket.R
-import com.kamel.movieticket.screen.MovieTicketApp
+import com.kamel.movieticket.ui.theme.BlurExitColor
 
 @Composable
 fun ExitIcon(
     modifier: Modifier = Modifier,
     iconColor: Color = Color.White,
-    backgroundColor: Color = Color.DarkGray,
+    backgroundColor: Color = BlurExitColor,
     iconModifier: Modifier = Modifier,
 ) {
     Box(

@@ -1,7 +1,6 @@
 package com.kamel.movieticket.composable
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -27,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kamel.movieticket.R
+import com.kamel.movieticket.ui.theme.TimeBackground
 
 @Composable
 fun CardTime(
@@ -34,42 +34,45 @@ fun CardTime(
     painter: Painter,
     contentDescription: String,
     time: String,
+    backgroundColor: Color = TimeBackground,
 ) {
     Card(
         modifier = modifier
-            .background(Color.DarkGray, shape = RoundedCornerShape(32.dp))
+            .background(backgroundColor, shape = RoundedCornerShape(32.dp))
             .clip(shape = RoundedCornerShape(32.dp)),
         elevation = CardDefaults.cardElevation(0.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.DarkGray
+            containerColor = backgroundColor
         )
     ) {
         Row(
             modifier = Modifier
-                .width(112.dp)
+                .width(88.dp)
                 .height(32.dp)
                 .fillMaxWidth()
-                .background(Color.DarkGray)
+                .background(backgroundColor)
                 .clip(shape = RoundedCornerShape(32.dp)),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
+            SpacerHorizontal(space = 8)
             Icon(
                 modifier = Modifier
-                    .size(24.dp)
+                    .size(16.dp)
                     .alpha(0.6f),
                 painter = painter,
                 contentDescription = contentDescription,
                 tint = Color.White
             )
+            SpacerHorizontal(space = 6)
             Text(
                 text = time,
                 style = TextStyle(
                     color = Color.White,
                     fontFamily = FontFamily.SansSerif,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 16.sp,
+                    fontWeight = FontWeight.W500,
+                    fontSize = 14.sp,
                 ),
+                modifier = Modifier.alpha(0.80f)
             )
         }
     }
