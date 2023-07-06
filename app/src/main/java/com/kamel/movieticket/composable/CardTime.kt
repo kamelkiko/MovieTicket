@@ -49,7 +49,6 @@ fun CardTime(
             modifier = Modifier
                 .width(88.dp)
                 .height(32.dp)
-                .fillMaxWidth()
                 .background(backgroundColor)
                 .clip(shape = RoundedCornerShape(32.dp)),
             verticalAlignment = Alignment.CenterVertically,
