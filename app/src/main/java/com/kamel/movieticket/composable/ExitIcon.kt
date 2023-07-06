@@ -2,6 +2,7 @@ package com.kamel.movieticket.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -24,11 +25,13 @@ fun ExitIcon(
     modifier: Modifier = Modifier,
     iconColor: Color = Color.White,
     backgroundColor: Color = BlurExitColor,
+    onCLick: () -> Unit = {},
 ) {
     Box(
         modifier = modifier
             .size(40.dp)
-            .background(color = backgroundColor, shape = CircleShape),
+            .background(color = backgroundColor, shape = CircleShape)
+            .clickable(onClick = onCLick),
         contentAlignment = Alignment.Center,
     ) {
         Icon(
