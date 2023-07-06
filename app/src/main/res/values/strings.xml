@@ -3,4 +3,6 @@
     <string name="close">Close</string>
     <string name="poster_movie">PosterMovie</string>
     <string name="time">Time</string>
+    <string name="booking">Booking</string>
+    <string name="play">Playing trial</string>
 </resources>

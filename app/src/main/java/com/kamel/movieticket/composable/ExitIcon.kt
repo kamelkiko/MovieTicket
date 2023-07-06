@@ -24,7 +24,6 @@ fun ExitIcon(
     modifier: Modifier = Modifier,
     iconColor: Color = Color.White,
     backgroundColor: Color = BlurExitColor,
-    iconModifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
@@ -33,7 +32,7 @@ fun ExitIcon(
         contentAlignment = Alignment.Center,
     ) {
         Icon(
-            modifier = iconModifier
+            modifier = Modifier
                 .border(width = 2.dp, shape = CircleShape, color = Color.White)
                 .size(24.dp)
                 .padding(4.dp),

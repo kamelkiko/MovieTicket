@@ -1,6 +1,7 @@
 package com.kamel.movieticket.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -33,6 +34,7 @@ import com.kamel.movieticket.R
 import com.kamel.movieticket.composable.ActorItem
 import com.kamel.movieticket.composable.CardTag
 import com.kamel.movieticket.composable.CardTime
+import com.kamel.movieticket.composable.DefaultButton
 import com.kamel.movieticket.composable.ExitIcon
 import com.kamel.movieticket.composable.MovieName
 import com.kamel.movieticket.composable.PosterImage
@@ -79,11 +81,12 @@ private fun MovieDetailsContent() {
                 modifier = Modifier
                     .align(Alignment.Center)
                     .size(56.dp)
-                    .background(Orange, shape = CircleShape),
+                    .background(Orange, shape = CircleShape)
+                    .clickable { },
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.play),
-                    contentDescription = null,
+                    contentDescription = stringResource(id = R.string.play),
                     modifier = Modifier
                         .align(alignment = Alignment.Center)
                         .size(24.dp)
@@ -137,6 +140,16 @@ private fun MovieDetailsContent() {
                     .padding(horizontal = 24.dp),
                 textAlign = TextAlign.Center,
             )
+            SpacerVertical(space = 16)
+            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                DefaultButton(
+                    title = stringResource(id = R.string.booking),
+                    icon = painterResource(id = R.drawable.ticket),
+                    contentDescription = stringResource(id = R.string.booking),
+                ) {
+                    //navigate
+                }
+            }
         }
     }
 }
