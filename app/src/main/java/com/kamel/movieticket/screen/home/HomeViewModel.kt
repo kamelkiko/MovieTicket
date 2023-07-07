@@ -1,9 +1,8 @@
-package com.kamel.movieticket.screen.viewModel
+package com.kamel.movieticket.screen.home
 
 import androidx.lifecycle.ViewModel
 import com.kamel.movieticket.data.movies
 import com.kamel.movieticket.domain.model.Movie
-import com.kamel.movieticket.screen.state.HomeUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

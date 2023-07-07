@@ -1,9 +1,8 @@
-package com.kamel.movieticket.screen.viewModel
+package com.kamel.movieticket.screen.details
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.kamel.movieticket.data.getMovieById
-import com.kamel.movieticket.screen.state.DetailsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

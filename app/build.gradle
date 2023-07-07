@@ -86,5 +86,7 @@ dependencies {
     implementation 'androidx.compose.foundation:foundation:1.4.3'
     implementation 'com.google.accompanist:accompanist-pager:0.20.0'
     implementation "androidx.compose.ui:ui-util:1.4.3"
+    //constraint layout
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
 
 }

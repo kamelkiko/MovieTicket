@@ -17,3 +17,6 @@ val Orange = Color(0xFFFF5524)
 val Text63 = Color(0xA1000000)
 val TimeBackground=Color(0xFF283133)
 val BlurExitColor=Color(0xFF9E674E)
+
+val PrimaryLight = Color(0xffff5524)
+val OnPrimaryLight = Color(0xffffffff)

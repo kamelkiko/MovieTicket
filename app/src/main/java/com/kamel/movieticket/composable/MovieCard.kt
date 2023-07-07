@@ -22,7 +22,7 @@ import com.google.accompanist.pager.calculateCurrentOffsetForPage
 import com.google.accompanist.pager.rememberPagerState
 import com.kamel.movieticket.R
 import com.kamel.movieticket.domain.model.Movie
-import com.kamel.movieticket.screen.state.HomeUiState
+import com.kamel.movieticket.screen.home.HomeUiState
 import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalPagerApi::class)

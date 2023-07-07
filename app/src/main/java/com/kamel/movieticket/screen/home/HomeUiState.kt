@@ -1,4 +1,4 @@
-package com.kamel.movieticket.screen.state
+package com.kamel.movieticket.screen.home
 
 import com.kamel.movieticket.R
 import com.kamel.movieticket.domain.model.Movie

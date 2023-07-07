@@ -1,4 +1,4 @@
-package com.kamel.movieticket.screen
+package com.kamel.movieticket.screen.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -38,8 +38,6 @@ import com.kamel.movieticket.composable.SpacerHorizontal
 import com.kamel.movieticket.composable.SpacerVertical
 import com.kamel.movieticket.domain.model.Movie
 import com.kamel.movieticket.navigate.Screen
-import com.kamel.movieticket.screen.state.HomeUiState
-import com.kamel.movieticket.screen.viewModel.HomeViewModel
 import com.kamel.movieticket.ui.theme.Black87
 import com.kamel.movieticket.ui.theme.Orange
 

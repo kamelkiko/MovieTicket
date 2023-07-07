@@ -1,4 +1,4 @@
-package com.kamel.movieticket.screen
+package com.kamel.movieticket.screen.details
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -49,8 +49,6 @@ import com.kamel.movieticket.composable.SpacerVertical
 import com.kamel.movieticket.composable.TextPercentage
 import com.kamel.movieticket.composable.TextRate
 import com.kamel.movieticket.data.actors
-import com.kamel.movieticket.screen.state.DetailsUiState
-import com.kamel.movieticket.screen.viewModel.DetailsViewModel
 import com.kamel.movieticket.ui.theme.Orange
 
 @Composable
@@ -163,7 +161,7 @@ private fun MovieDetailsContent(
                 textAlign = TextAlign.Center,
                 maxLines = 3,
             )
-            SpacerVertical(space = 8)
+            SpacerVertical(space = 16)
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                 DefaultButton(
                     title = stringResource(id = R.string.booking),
