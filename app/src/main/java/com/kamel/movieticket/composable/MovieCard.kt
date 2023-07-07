@@ -1,6 +1,5 @@
 package com.kamel.movieticket.composable
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -21,27 +20,27 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.calculateCurrentOffsetForPage
 import com.google.accompanist.pager.rememberPagerState
 import com.kamel.movieticket.R
+import com.kamel.movieticket.domain.model.Movie
+import com.kamel.movieticket.screen.state.HomeUiState
 import kotlin.math.absoluteValue
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalPagerApi::class)
+@OptIn(ExperimentalPagerApi::class)
 @Composable
-fun MovieCard() {
+fun MovieCard(
+    state: HomeUiState,
+    onSwipe: (Movie) -> Unit,
+) {
     val pagerState = rememberPagerState(initialPage = 1)
-    val moviesList = listOf(
-        R.drawable.movie_1,
-        R.drawable.movie_2,
-        R.drawable.movie_3,
-    )
     Column(modifier = Modifier.fillMaxSize()) {
-
         HorizontalPager(
-            count = 3,
+            count = state.movies?.size!!,
             state = pagerState,
             contentPadding = PaddingValues(horizontal = 80.dp),
             modifier = Modifier
                 .height(350.dp)
                 .fillMaxWidth(),
         ) { page ->
+            onSwipe(state.movies[pagerState.currentPage])
             Card(
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier.graphicsLayer {
@@ -62,7 +61,7 @@ fun MovieCard() {
                 }
             ) {
                 Image(
-                    painter = painterResource(id = moviesList[page]),
+                    painter = painterResource(id = state.movies[page].imageDrawable!!),
                     contentDescription = stringResource(
                         id = R.string.poster_movie
                     )

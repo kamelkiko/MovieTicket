@@ -42,7 +42,7 @@ import com.kamel.movieticket.composable.PosterImage
 import com.kamel.movieticket.composable.SpacerVertical
 import com.kamel.movieticket.composable.TextPercentage
 import com.kamel.movieticket.composable.TextRate
-import com.kamel.movieticket.screen.viewModel.actors
+import com.kamel.movieticket.data.actors
 import com.kamel.movieticket.ui.theme.Orange
 
 @Composable
