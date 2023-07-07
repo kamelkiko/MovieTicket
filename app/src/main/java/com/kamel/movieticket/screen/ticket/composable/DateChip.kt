@@ -5,7 +5,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.DarkGray
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -13,6 +12,7 @@ import androidx.compose.ui.unit.sp
 import com.kamel.movieticket.composable.Chip
 import com.kamel.movieticket.screen.ticket.Day
 import com.kamel.movieticket.ui.theme.Black87
+import com.kamel.movieticket.ui.theme.DarkGray
 import com.kamel.movieticket.ui.theme.LightGray
 
 @Composable

@@ -3,8 +3,8 @@ package com.kamel.movieticket.screen.ticket
 data class BuyTicketsUiState(
     val selectedDay: Day = Day(17, "Sun"),
     val selectedTime: String = "10:00",
-    val price: Double = 100.00,
-    val ticketsCount: Int = 5,
+    val price: Double = 0.0,
+    val ticketsCount: Int = 0,
     val days: List<Day> = listOf(
         Day(14, "Thu"),
         Day(15, "Fri"),

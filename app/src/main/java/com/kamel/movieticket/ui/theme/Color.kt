@@ -11,10 +11,9 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val Black87 = Color(0xDE121212)
-val White = Color(0xFFFFFFFF)
-val LightGray = Color(0xffb4b4b4)
+val DarkGray = Color(0xff93897c)
+val LightGray = Color(0xffb1a698)
 val Orange = Color(0xFFFF5524)
-val Text63 = Color(0xA1000000)
 val TimeBackground=Color(0xFF283133)
 val BlurExitColor=Color(0xFF9E674E)
 

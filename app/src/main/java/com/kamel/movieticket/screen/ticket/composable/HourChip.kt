@@ -3,9 +3,9 @@ package com.kamel.movieticket.screen.ticket.composable
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.DarkGray
 import com.kamel.movieticket.composable.Chip
 import com.kamel.movieticket.ui.theme.Black87
+import com.kamel.movieticket.ui.theme.DarkGray
 import com.kamel.movieticket.ui.theme.LightGray
 
 @Composable

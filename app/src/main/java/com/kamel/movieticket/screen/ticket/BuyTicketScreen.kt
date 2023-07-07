@@ -14,10 +14,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.kamel.movieticket.R
 import com.kamel.movieticket.composable.BottomSheet
@@ -44,38 +43,33 @@ import com.kamel.movieticket.ui.theme.Black87
 @Composable
 fun BuyTicketsScreen(
     navController: NavController,
-    modifier: Modifier = Modifier
+    viewModel: BuyTicketViewModel = hiltViewModel(),
 ) {
-    var buyTicketsUiState by remember { mutableStateOf(BuyTicketsUiState()) }
+    val buyTicketsUiState by viewModel.ticketUiState.collectAsState()
     BuyTicketsContent(
-        listener = object : BuyTicketsInteractionsListener {
-            override fun onClickExit() {
-                navController.popBackStack()
-            }
-
-            override fun onClickBuy() {
-
-            }
-
-            override fun doWhenSelectDay(day: Day) {
-                buyTicketsUiState = buyTicketsUiState.copy(selectedDay = day)
-            }
-
-            override fun doWhenSelectHour(hour: String) {
-                buyTicketsUiState = buyTicketsUiState.copy(selectedTime = hour)
-            }
-
-        },
+        navController = navController,
+//            override fun doWhenSelectDay(day: Day) {
+//                buyTicketsUiState = buyTicketsUiState.copy(selectedDay = day)
+//            }
+//
+//            override fun doWhenSelectHour(hour: String) {
+//                buyTicketsUiState = buyTicketsUiState.copy(selectedTime = hour)
+//            }
+//
+//        },
         state = buyTicketsUiState,
-        modifier = modifier
+        onClickDay = viewModel::dayClicked,
+        onClickHour = viewModel::hourSelected,
     )
 }
 
 @Composable
 fun BuyTicketsContent(
     state: BuyTicketsUiState,
-    listener: BuyTicketsInteractionsListener,
-    modifier: Modifier = Modifier
+    navController: NavController,
+    modifier: Modifier = Modifier,
+    onClickDay: (Day) -> Unit,
+    onClickHour: (String) -> Unit,
 ) {
     ConstraintLayout(
         modifier = modifier
@@ -91,7 +85,7 @@ fun BuyTicketsContent(
             top.linkTo(parent.top, 16.dp)
         }) {
             ExitIcon() {
-                listener.onClickExit()
+                navController.popBackStack()
             }
         }
 
@@ -118,11 +112,10 @@ fun BuyTicketsContent(
                 top.linkTo(image.bottom, (-8).dp)
             }
         )
-
         RowOfPairOfChairs(
             pairList = listOf(
                 Pair(ChairState.Available, ChairState.Available),
-                Pair(ChairState.Selected, ChairState.Selected),
+                Pair(ChairState.Available, ChairState.Available),
                 Pair(ChairState.Available, ChairState.Available),
             ),
             modifier = Modifier.constrainAs(rowChairs2) {
@@ -133,7 +126,7 @@ fun BuyTicketsContent(
         RowOfPairOfChairs(
             pairList = listOf(
                 Pair(ChairState.Taken, ChairState.Available),
-                Pair(ChairState.Selected, ChairState.Selected),
+                Pair(ChairState.Available, ChairState.Available),
                 Pair(ChairState.Taken, ChairState.Taken),
             ),
             modifier = Modifier.constrainAs(rowChairs3) {
@@ -162,7 +155,6 @@ fun BuyTicketsContent(
             }
         )
         /// endregion
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -187,7 +179,7 @@ fun BuyTicketsContent(
                     DateChip(
                         it,
                         isSelected = it == state.selectedDay,
-                        doWhenSelect = listener::doWhenSelectDay
+                        doWhenSelect = onClickDay
                     )
                 }
             }
@@ -200,7 +192,7 @@ fun BuyTicketsContent(
                     HourChip(
                         it,
                         isSelected = it == state.selectedTime,
-                        doWhenSelectHour = listener::doWhenSelectHour,
+                        doWhenSelectHour = onClickHour,
                     )
                 }
             }
@@ -232,7 +224,7 @@ fun BuyTicketsContent(
                     icon = painterResource(id = R.drawable.ticket),
                     contentDescription = stringResource(id = R.string.booking),
                 ) {
-                    listener.onClickBuy()
+
                 }
             }
         }
