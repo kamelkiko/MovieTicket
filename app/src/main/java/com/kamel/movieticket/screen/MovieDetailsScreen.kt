@@ -30,15 +30,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.kamel.movieticket.R
 import com.kamel.movieticket.composable.ActorItem
-import com.kamel.movieticket.composable.CardTag
 import com.kamel.movieticket.composable.CardTime
 import com.kamel.movieticket.composable.DefaultButton
 import com.kamel.movieticket.composable.ExitIcon
+import com.kamel.movieticket.composable.GenericChips
 import com.kamel.movieticket.composable.MovieName
 import com.kamel.movieticket.composable.PosterImage
-import com.kamel.movieticket.composable.SpacerHorizontal
 import com.kamel.movieticket.composable.SpacerVertical
 import com.kamel.movieticket.composable.TextPercentage
 import com.kamel.movieticket.composable.TextRate
@@ -46,7 +46,7 @@ import com.kamel.movieticket.screen.viewModel.actors
 import com.kamel.movieticket.ui.theme.Orange
 
 @Composable
-fun MovieDetailsScreen() {
+fun MovieDetailsScreen(navHostController: NavHostController) {
     MovieDetailsContent()
 }
 
@@ -116,15 +116,7 @@ private fun MovieDetailsContent() {
             }
             MovieName("Fantastic Beats: The Secrets of Dumbledore")
             SpacerVertical(space = 16)
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center,
-            ) {
-                CardTag(tag = "Fantasy")
-                SpacerHorizontal(space = 8)
-                CardTag(tag = "Adventure")
-            }
+            GenericChips()
             SpacerVertical(space = 8)
             Actors()
             SpacerVertical(space = 8)

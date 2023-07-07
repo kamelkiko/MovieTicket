@@ -2,7 +2,6 @@ package com.kamel.movieticket.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -35,6 +34,7 @@ fun CardTime(
     contentDescription: String,
     time: String,
     backgroundColor: Color = TimeBackground,
+    color: Color = Color.White,
 ) {
     Card(
         modifier = modifier
@@ -60,13 +60,13 @@ fun CardTime(
                     .alpha(0.6f),
                 painter = painter,
                 contentDescription = contentDescription,
-                tint = Color.White
+                tint = color
             )
             SpacerHorizontal(space = 6)
             Text(
                 text = time,
                 style = TextStyle(
-                    color = Color.White,
+                    color = color,
                     fontFamily = FontFamily.SansSerif,
                     fontWeight = FontWeight.W500,
                     fontSize = 14.sp,

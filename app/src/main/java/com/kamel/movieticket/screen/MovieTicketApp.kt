@@ -9,8 +9,9 @@ import androidx.navigation.compose.composable
 fun MovieTicketApp(
     navController: NavHostController
 ) {
-    NavHost(navController = navController, startDestination = "MovieDetailsScreen") {
-        composable("MovieDetailsScreen") { MovieDetailsScreen() }
+    NavHost(navController = navController, startDestination = "HomeScreen") {
+        composable("MovieDetailsScreen") { MovieDetailsScreen(navHostController = navController) }
+        composable("HomeScreen") { HomeScreen(navHostController = navController) }
     }
 
 }
