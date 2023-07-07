@@ -49,6 +49,7 @@ import com.kamel.movieticket.composable.SpacerVertical
 import com.kamel.movieticket.composable.TextPercentage
 import com.kamel.movieticket.composable.TextRate
 import com.kamel.movieticket.data.actors
+import com.kamel.movieticket.navigate.Screen
 import com.kamel.movieticket.ui.theme.Orange
 
 @Composable
@@ -168,7 +169,7 @@ private fun MovieDetailsContent(
                     icon = painterResource(id = R.drawable.ticket),
                     contentDescription = stringResource(id = R.string.booking),
                 ) {
-                    // navHostController.navigate("")
+                    navHostController.navigate(Screen.BuyTicketScreen.route)
                 }
             }
         }

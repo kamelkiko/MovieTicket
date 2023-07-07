@@ -9,6 +9,7 @@ import androidx.navigation.navArgument
 import com.kamel.movieticket.navigate.Screen
 import com.kamel.movieticket.screen.details.MovieDetailsScreen
 import com.kamel.movieticket.screen.home.HomeScreen
+import com.kamel.movieticket.screen.ticket.BuyTicketsScreen
 
 @Composable
 fun MovieTicketApp(
@@ -27,9 +28,9 @@ fun MovieTicketApp(
                 toYoutube = toYoutube
             )
         }
-        composable(Screen.HomeScreen.route) {
-            HomeScreen(navHostController = navController)
-        }
+        composable(Screen.HomeScreen.route) { HomeScreen(navHostController = navController) }
+
+        composable(Screen.BuyTicketScreen.route) { BuyTicketsScreen(navController = navController) }
     }
 
 }
