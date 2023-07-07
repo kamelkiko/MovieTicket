@@ -27,4 +27,23 @@ class BuyTicketViewModel @Inject constructor() : ViewModel() {
             )
         }
     }
+
+    fun increasePriceAndTicketNumber(price: Double, count: Int) {
+        _ticketUiState.update {
+            it.copy(
+                price = price + 25.0,
+                ticketsCount = count + 1
+            )
+        }
+    }
+
+    fun deIncreasePriceAndTicketNumber(price: Double, count: Int) {
+        if (price != 0.0 && count != 0)
+            _ticketUiState.update {
+                it.copy(
+                    price = price - 25.0,
+                    ticketsCount = count - 1
+                )
+            }
+    }
 }

@@ -22,7 +22,11 @@ import com.kamel.movieticket.ui.theme.PrimaryLight
 fun PairChairs(
     pair: Pair<ChairState, ChairState>,
     modifier: Modifier = Modifier,
-    size: Int = 75
+    size: Int = 75,
+    currentPrice: Double,
+    currentCount: Int,
+    onClickChar: (Double, Int) -> Unit,
+    onClickCharSelected: (Double, Int) -> Unit,
 ) {
     var pairState by remember {
         mutableStateOf(pair)
@@ -49,9 +53,17 @@ fun PairChairs(
         ) {
             ChairItem(chairState = pairState.first, modifier = Modifier.size(size.dp)) {
                 pairState = pairState.copy(first = it.nextState())
+                if (pairState.first == ChairState.Selected)
+                    onClickChar(currentPrice, currentCount)
+                if (pairState.first == ChairState.Available)
+                    onClickCharSelected(currentPrice, currentCount)
             }
             ChairItem(chairState = pairState.second, modifier = Modifier.size(size.dp)) {
                 pairState = pairState.copy(second = it.nextState())
+                if (pairState.second == ChairState.Selected)
+                    onClickChar(currentPrice, currentCount)
+                if (pairState.second == ChairState.Available)
+                    onClickCharSelected(currentPrice, currentCount)
             }
         }
     }

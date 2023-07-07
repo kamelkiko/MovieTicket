@@ -60,6 +60,8 @@ fun BuyTicketsScreen(
         state = buyTicketsUiState,
         onClickDay = viewModel::dayClicked,
         onClickHour = viewModel::hourSelected,
+        onClickChar = viewModel::increasePriceAndTicketNumber,
+        onClickCharSelected = viewModel::deIncreasePriceAndTicketNumber,
     )
 }
 
@@ -70,6 +72,8 @@ fun BuyTicketsContent(
     modifier: Modifier = Modifier,
     onClickDay: (Day) -> Unit,
     onClickHour: (String) -> Unit,
+    onClickChar: (Double, Int) -> Unit,
+    onClickCharSelected: (Double, Int) -> Unit,
 ) {
     ConstraintLayout(
         modifier = modifier
@@ -110,7 +114,11 @@ fun BuyTicketsContent(
             ),
             modifier = Modifier.constrainAs(rowChairs1) {
                 top.linkTo(image.bottom, (-8).dp)
-            }
+            },
+            currentPrice = state.price,
+            currentCount = state.ticketsCount,
+            onClickChar = onClickChar,
+            onClickCharSelected = onClickCharSelected,
         )
         RowOfPairOfChairs(
             pairList = listOf(
@@ -120,7 +128,11 @@ fun BuyTicketsContent(
             ),
             modifier = Modifier.constrainAs(rowChairs2) {
                 top.linkTo(rowChairs1.bottom, (-gap).dp)
-            }
+            },
+            currentPrice = state.price,
+            currentCount = state.ticketsCount,
+            onClickChar = onClickChar,
+            onClickCharSelected = onClickCharSelected,
         )
 
         RowOfPairOfChairs(
@@ -131,7 +143,11 @@ fun BuyTicketsContent(
             ),
             modifier = Modifier.constrainAs(rowChairs3) {
                 top.linkTo(rowChairs2.bottom, (-gap).dp)
-            }
+            },
+            currentPrice = state.price,
+            currentCount = state.ticketsCount,
+            onClickChar = onClickChar,
+            onClickCharSelected = onClickCharSelected,
         )
 
         RowOfPairOfChairs(
@@ -142,7 +158,11 @@ fun BuyTicketsContent(
             ),
             modifier = Modifier.constrainAs(rowChairs4) {
                 top.linkTo(rowChairs3.bottom, (-gap).dp)
-            }
+            },
+            currentPrice = state.price,
+            currentCount = state.ticketsCount,
+            onClickChar = onClickChar,
+            onClickCharSelected = onClickCharSelected,
         )
         RowOfPairOfChairs(
             pairList = listOf(
@@ -152,7 +172,11 @@ fun BuyTicketsContent(
             ),
             modifier = Modifier.constrainAs(rowChairs5) {
                 top.linkTo(rowChairs4.bottom, (-gap).dp)
-            }
+            },
+            currentPrice = state.price,
+            currentCount = state.ticketsCount,
+            onClickChar = onClickChar,
+            onClickCharSelected = onClickCharSelected,
         )
         /// endregion
         Row(

@@ -11,7 +11,11 @@ import androidx.compose.ui.graphics.graphicsLayer
 @Composable
 fun RowOfPairOfChairs(
     pairList: List<Pair<ChairState, ChairState>>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    currentPrice: Double,
+    currentCount: Int,
+    onClickChar: (Double, Int) -> Unit,
+    onClickCharSelected: (Double, Int) -> Unit,
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
@@ -28,6 +32,10 @@ fun RowOfPairOfChairs(
                     rotationZ = rotateDegree
                     translationY = translatedY
                 },
+                currentCount = currentCount,
+                currentPrice = currentPrice,
+                onClickChar = onClickChar,
+                onClickCharSelected = onClickCharSelected,
             )
         }
     }
