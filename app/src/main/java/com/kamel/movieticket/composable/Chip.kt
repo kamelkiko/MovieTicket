@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.kamel.movieticket.ui.theme.OnPrimaryLight
 import com.kamel.movieticket.ui.theme.PrimaryLight
+import com.kamel.movieticket.util.clickableIf
 
 @Composable
 fun Chip(

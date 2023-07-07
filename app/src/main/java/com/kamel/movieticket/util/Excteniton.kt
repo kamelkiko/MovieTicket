@@ -1,4 +1,4 @@
-package com.kamel.movieticket.composable
+package com.kamel.movieticket.util
 
 import androidx.compose.foundation.clickable
 import androidx.compose.ui.Modifier
