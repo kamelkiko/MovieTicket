@@ -17,7 +17,7 @@ val movies = listOf(
         name = "Fantastic Beats: The Secrets of Dumbledore",
         imageDrawable = R.drawable.movie_2,
         time = "2h 23m",
-        description = "Doctor Strange teams up with a mysterious teenage girl from his dreams who can travel across multiverses, to battle multiple threats, including other-universe versions of himself, which threaten to wipe out millions across the multiverse.",
+        description = "Dumbledore assembles a team of wizards, witches and a Muggle baker to oppose the rise of Gellert Grindelwald. They hatch a plan to confuse Grindelwald and stop him from attaining political power.",
         trailer = "https://www.youtube.com/watch?v=aWzlQ2N6qqg",
     ),
     Movie(
@@ -25,7 +25,7 @@ val movies = listOf(
         name = "Doctor Strange In The Multiverse Of Madness",
         imageDrawable = R.drawable.movie_3,
         time = "2h 6m",
-        description = "Dumbledore assembles a team of wizards, witches and a Muggle baker to oppose the rise of Gellert Grindelwald. They hatch a plan to confuse Grindelwald and stop him from attaining political power.",
+        description = "Doctor Strange teams up with a mysterious teenage girl from his dreams who can travel across multiverses, to battle multiple threats, including other-universe versions of himself, which threaten to wipe out millions across the multiverse.",
         trailer = "https://www.youtube.com/watch?v=Y9dr2zw-TXQ",
     ),
 )

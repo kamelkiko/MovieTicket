@@ -2,6 +2,9 @@ package com.kamel.movieticket.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.ScrollableState
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -70,8 +73,13 @@ private fun MovieDetailsContent(
     state: DetailsUiState,
     toYoutube: (String) -> Unit,
 ) {
+    val scrollState = ScrollableState {
+        1f
+    }
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .scrollable(state = scrollState, orientation = Orientation.Vertical),
     ) {
         Box(
             modifier = Modifier
@@ -146,15 +154,16 @@ private fun MovieDetailsContent(
                 text = state.movie.description!!,
                 style = MaterialTheme.typography.bodySmall.copy(
                     color = Color.Black,
-                    fontSize = 14.sp
+                    fontSize = 14.sp,
                 ),
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp),
                 textAlign = TextAlign.Center,
+                maxLines = 3,
             )
-            SpacerVertical(space = 16)
+            SpacerVertical(space = 8)
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                 DefaultButton(
                     title = stringResource(id = R.string.booking),
