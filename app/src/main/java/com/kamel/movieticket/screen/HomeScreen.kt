@@ -37,6 +37,7 @@ import com.kamel.movieticket.composable.MovieName
 import com.kamel.movieticket.composable.SpacerHorizontal
 import com.kamel.movieticket.composable.SpacerVertical
 import com.kamel.movieticket.domain.model.Movie
+import com.kamel.movieticket.navigate.Screen
 import com.kamel.movieticket.screen.state.HomeUiState
 import com.kamel.movieticket.screen.viewModel.HomeViewModel
 import com.kamel.movieticket.ui.theme.Black87
@@ -53,7 +54,7 @@ fun HomeScreen(
         state,
         viewModel::onSwipeMovie,
         onClickChip = viewModel::onClickChip,
-        isSelectedChip = state.isSelectedChip!!,
+        isSelectedChip = state.isSelectedChip,
     )
 }
 
@@ -71,7 +72,7 @@ private fun HomeContent(
     Box(
         modifier = Modifier.fillMaxSize(),
     ) {
-        BlurImage(state.blurImage!!)
+        BlurImage(state.blurImage)
         Column {
             Row(
                 modifier = Modifier
@@ -93,7 +94,9 @@ private fun HomeContent(
                 )
             }
             SpacerVertical(space = 16)
-            MovieCard(state, onSwipe)
+            MovieCard(state, onSwipe) { id ->
+                navHostController.navigate(Screen.DetailsScreen.route + "/$id")
+            }
         }
         Column(
             modifier = Modifier

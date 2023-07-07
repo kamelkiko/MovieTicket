@@ -21,6 +21,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.kamel.movieticket.R
 import com.kamel.movieticket.composable.ActorItem
@@ -43,15 +46,30 @@ import com.kamel.movieticket.composable.SpacerVertical
 import com.kamel.movieticket.composable.TextPercentage
 import com.kamel.movieticket.composable.TextRate
 import com.kamel.movieticket.data.actors
+import com.kamel.movieticket.screen.state.DetailsUiState
+import com.kamel.movieticket.screen.viewModel.DetailsViewModel
 import com.kamel.movieticket.ui.theme.Orange
 
 @Composable
-fun MovieDetailsScreen(navHostController: NavHostController) {
-    MovieDetailsContent()
+fun MovieDetailsScreen(
+    navHostController: NavHostController,
+    viewModel: DetailsViewModel = hiltViewModel(),
+    toYoutube: (String) -> Unit,
+) {
+    val state by viewModel.state.collectAsState()
+    MovieDetailsContent(
+        navHostController = navHostController,
+        state = state,
+        toYoutube = toYoutube
+    )
 }
 
 @Composable
-private fun MovieDetailsContent() {
+private fun MovieDetailsContent(
+    navHostController: NavHostController,
+    state: DetailsUiState,
+    toYoutube: (String) -> Unit,
+) {
     Box(
         modifier = Modifier.fillMaxSize(),
     ) {
@@ -61,7 +79,7 @@ private fun MovieDetailsContent() {
                 .fillMaxHeight(0.5f),
         ) {
             PosterImage(
-                painter = painterResource(id = R.drawable.poster_movie),
+                painter = painterResource(id = state.movie.imageDrawable!!),
                 contentDescription = stringResource(id = R.string.poster_movie)
             )
             Row(
@@ -70,11 +88,13 @@ private fun MovieDetailsContent() {
                     .padding(horizontal = 16.dp, vertical = 32.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                ExitIcon()
+                ExitIcon {
+                    navHostController.popBackStack()
+                }
                 CardTime(
                     painter = painterResource(id = R.drawable.clock),
                     contentDescription = stringResource(id = R.string.time),
-                    time = "2h 23m",
+                    time = state.movie.time!!,
                 )
             }
             Box(
@@ -82,7 +102,9 @@ private fun MovieDetailsContent() {
                     .align(Alignment.Center)
                     .size(56.dp)
                     .background(Orange, shape = CircleShape)
-                    .clickable { },
+                    .clickable {
+                        toYoutube(state.movie.trailer!!)
+                    },
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.play),
@@ -114,14 +136,14 @@ private fun MovieDetailsContent() {
             ) {
                 Rates()
             }
-            MovieName("Fantastic Beats: The Secrets of Dumbledore")
+            MovieName(state.movie.name!!)
             SpacerVertical(space = 16)
             GenericChips()
             SpacerVertical(space = 8)
             Actors()
             SpacerVertical(space = 8)
             Text(
-                text = "Professor Allbus Dumbledore knows the powerful, dark wizard Gellert Grindelwald is moving to seize control of the wizarding world. Unable to stop him..",
+                text = state.movie.description!!,
                 style = MaterialTheme.typography.bodySmall.copy(
                     color = Color.Black,
                     fontSize = 14.sp
@@ -139,7 +161,7 @@ private fun MovieDetailsContent() {
                     icon = painterResource(id = R.drawable.ticket),
                     contentDescription = stringResource(id = R.string.booking),
                 ) {
-                    //navigate
+                    // navHostController.navigate("")
                 }
             }
         }
@@ -160,7 +182,7 @@ private fun Actors() {
         contentPadding = PaddingValues(16.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        items(actors) {
+        items(actors.shuffled()) {
             ActorItem(image = it)
         }
     }

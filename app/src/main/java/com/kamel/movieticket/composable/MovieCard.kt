@@ -1,6 +1,7 @@
 package com.kamel.movieticket.composable
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,11 +30,12 @@ import kotlin.math.absoluteValue
 fun MovieCard(
     state: HomeUiState,
     onSwipe: (Movie) -> Unit,
+    onClickCard: (Int) -> Unit,
 ) {
     val pagerState = rememberPagerState(initialPage = 1)
     Column(modifier = Modifier.fillMaxSize()) {
         HorizontalPager(
-            count = state.movies?.size!!,
+            count = state.movies.size,
             state = pagerState,
             contentPadding = PaddingValues(horizontal = 80.dp),
             modifier = Modifier
@@ -43,22 +45,24 @@ fun MovieCard(
             onSwipe(state.movies[pagerState.currentPage])
             Card(
                 shape = RoundedCornerShape(16.dp),
-                modifier = Modifier.graphicsLayer {
-                    val pageOffset = calculateCurrentOffsetForPage(page).absoluteValue
-                    lerp(
-                        start = 0.90f,
-                        stop = 1f,
-                        fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                    ).also { scale ->
-                        scaleX = scale
-                        scaleY = scale
+                modifier = Modifier
+                    .graphicsLayer {
+                        val pageOffset = calculateCurrentOffsetForPage(page).absoluteValue
+                        lerp(
+                            start = 0.90f,
+                            stop = 1f,
+                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                        ).also { scale ->
+                            scaleX = scale
+                            scaleY = scale
+                        }
+                        alpha = lerp(
+                            start = 1f,
+                            stop = 1f,
+                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                        )
                     }
-                    alpha = lerp(
-                        start = 1f,
-                        stop = 1f,
-                        fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                    )
-                }
+                    .clickable { onClickCard(state.movies[pagerState.currentPage].id!!) }
             ) {
                 Image(
                     painter = painterResource(id = state.movies[page].imageDrawable!!),

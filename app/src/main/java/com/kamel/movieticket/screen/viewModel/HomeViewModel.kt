@@ -30,14 +30,14 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     fun onSwipeMovie(movie: Movie) {
         _state.update {
             it.copy(
-                blurImage = movie.imageDrawable,
+                blurImage = movie.imageDrawable!!,
                 currentMovie = movie
             )
         }
     }
 
     fun onClickChip() {
-        if (_state.value.isSelectedChip!!)
+        if (_state.value.isSelectedChip)
             _state.update {
                 it.copy(
                     isSelectedChip = false,

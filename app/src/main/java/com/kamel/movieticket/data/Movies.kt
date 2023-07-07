@@ -5,6 +5,7 @@ import com.kamel.movieticket.domain.model.Movie
 
 val movies = listOf(
     Movie(
+        id = 1,
         name = "Morbius",
         imageDrawable = R.drawable.movie_1,
         time = "1h 44m",
@@ -12,6 +13,7 @@ val movies = listOf(
         trailer = "https://www.youtube.com/watch?v=oZ6iiRrz1SY",
     ),
     Movie(
+        id = 2,
         name = "Fantastic Beats: The Secrets of Dumbledore",
         imageDrawable = R.drawable.movie_2,
         time = "2h 23m",
@@ -19,6 +21,7 @@ val movies = listOf(
         trailer = "https://www.youtube.com/watch?v=aWzlQ2N6qqg",
     ),
     Movie(
+        id = 3,
         name = "Doctor Strange In The Multiverse Of Madness",
         imageDrawable = R.drawable.movie_3,
         time = "2h 6m",
@@ -26,3 +29,5 @@ val movies = listOf(
         trailer = "https://www.youtube.com/watch?v=Y9dr2zw-TXQ",
     ),
 )
+
+fun getMovieById(id: Int): Movie = movies.first { it.id == id }
